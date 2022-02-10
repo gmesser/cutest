@@ -64,18 +64,19 @@ They could be in one common file that is linked to the test program during the b
 
 ```
 /**
- The required counters.  
- The cu_initialize_suite and cu_run_case macros initialize the counters.
- The cu_run_case and cu_assert macros increment the counters.
- The cu_report_suite macro reports the counters.
- The cu_suite_return_value macro uses the 
- cu_case_fails counter. 
+ The required counters.
+ 
+ The macros that use the counters are: 
+   * The cu_initialize_suite and cu_run_case macros initialize the appropriate counters to zero.
+   * The cu_run_case and cu_assert macros increment the appropriate counters.
+   * The cu_report_suite macro reports the counters.
+   * The cu_suite_return_value macro uses the cu_case_fails counter to determine the suite PASS or FAIL status. 
 */
 
-int cu_case_runs;
-int cu_case_fails;
-int cu_assert_runs;
-int cu_assert_fails;
+int cu_case_runs;     // Count of test cases in the suite that ran.
+int cu_case_fails;    // Count of test cases in the suite that failed.
+int cu_assert_runs;   // Count of assertions in the test case that were evaluated.
+int cu_assert_fails;  // Count of assertions in the test case that were false.
 ```
 
 ## Example test suite function:

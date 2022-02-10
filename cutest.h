@@ -20,7 +20,7 @@ extern int cu_assert_fails;	// Number of assertions that evaluated as false in a
 do { \
 	cu_case_runs = 0; \
 	cu_case_fails = 0; \
-	printf("%-9s Test suite...  File: %s.  Function: %s.\n", \
+	printf("%-9s Test suite.  File: %s.  Function: %s.\n", \
                 "Suite", \
                 __FILE__, \
                 __FUNCTION__); \
@@ -36,31 +36,30 @@ do { \
 	cu_assert_runs = 0; \
 	cu_assert_fails = 0; \
 	cu_case_runs++; \
-	printf("  %-9s Test case...  File: %s.  Function: %s.  Case: #%d.\n", \
+	printf("  %-9s Test case: %d.  File: %s.  Function: %s.\n", \
                 "Case", \
+				cu_case_runs, \
                 __FILE__, \
-                #cu_case_func, \
-                cu_case_runs); \
+                #cu_case_func); \
 	cu_case_func(); \
-	printf("  %-9s Test case...  File: %s.  Function: %s.  Case: #%d.  ", \
+	printf("  %-9s Test case: %d.  File: %s.  Function: %s.  ", \
 				(cu_assert_fails == 0 ? "Passed" : "Failed"), \
+				cu_case_runs, \
 				__FILE__, \
-				#cu_case_func, \
-				cu_case_runs); \
+				#cu_case_func); \
 	if (cu_assert_fails == 0) { \
-		printf("%d of %d (%3.1f%%) true assertions.", \
+		printf("%d of %d (%3.1f%%) true assertions.\n", \
 				cu_assert_runs, \
 				cu_assert_runs, \
 				100.0); \
 	} \
  	else { \
-		printf("%d of %d (%3.1f%%) false assertions.", \
+		printf("%d of %d (%3.1f%%) false assertions.\n", \
 				cu_assert_fails, \
 				cu_assert_runs, \
 				(cu_assert_fails / (cu_assert_runs + 0.0)) * 100); \
 		cu_case_fails++; \
 	} \
-	printf("\n"); \
 } while (0)
 
 /**
@@ -73,7 +72,7 @@ do { \
 do { \
 	cu_assert_runs++; \
 	if (!(cu_assert_expr)) { \
-		printf("    %-9s Assertion #%d.%d (%s) %s\n", \
+		printf("    %-9s Assertion %d.%d. (%s) %s\n", \
                 "False", \
                 cu_case_runs, \
                 cu_assert_runs, \
@@ -82,7 +81,7 @@ do { \
 		cu_assert_fails++; \
 	} \
 	else { \
-		printf("    %-9s Assertion #%d.%d (%s)\n", \
+		printf("    %-9s Assertion %d.%d. (%s)\n", \
                 "True", \
                 cu_case_runs, \
                 cu_assert_runs, \
@@ -92,12 +91,12 @@ do { \
 
 /**
  Print a report of the result of running a suite of test functions.
-   "PASS" means that all the suite functions passed.
-   "FAIL" means that one or more of the suite functions failed.
+   "PASS" means that all the test case functions passed.
+   "FAIL" means that one or more of the test case functions failed.
 */
 #define cu_report_suite() \
 do { \
-	printf("%-9s Test suite...  File: %s.  Function: %s.  ", \
+	printf("%-9s Test suite.  File: %s.  Function: %s.  ", \
 				((cu_case_fails == 0) ? "PASS" : "FAIL"), \
 				__FILE__, \
 				__FUNCTION__); \
