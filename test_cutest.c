@@ -5,11 +5,14 @@
 #include <stdio.h>
 #include "cutest.h"
 
+// Test suite functions:
 int test_suite1();
 int test_suite2();
 int test_suite3();
 int test_suite4();
 int test_suite5();
+
+// Test case functions:
 void test_case1();
 void test_case2();
 void test_case3();
@@ -18,13 +21,9 @@ void test_case5();
 void test_case6();
 void test_case7();
 
-/*
- The required cu_* counters.  
- All these test suites will use these globally-accessible counters.
-*/
-int cu_case_runs, cu_case_fails, cu_assert_runs, cu_assert_fails;
+int cu_case_runs, cu_case_fails, cu_assert_runs, cu_assert_fails; // REQUIRED
 
-// This main() function runs several suites.
+// This main() function runs several suites.  
 int main(int argc, char *argv[]) {
 	test_suite1();
 	test_suite2();
