@@ -11,6 +11,7 @@ int test_suite2();
 int test_suite3();
 int test_suite4();
 int test_suite5();
+int test_suite6();
 
 // Test case functions:
 void test_case1();
@@ -30,6 +31,7 @@ int main(int argc, char *argv[]) {
 	test_suite3();
 	test_suite4();
 	test_suite5();
+	test_suite6();
 }
 
 int test_suite1() {
@@ -81,6 +83,14 @@ int test_suite4() {
 }
 
 int test_suite5() {
+	// Start another suite of tests.  No test cases.
+	cu_initialize_suite();
+	// Report the results of the tests.
+	cu_report_suite();
+	return(cu_suite_return_value);
+}
+
+int test_suite6() {
 	// Start another suite of tests.  All fail.
 	cu_initialize_suite();
 	// Call the cu_run_case macro to run more test functions.
