@@ -30,7 +30,7 @@ test : test_cutest
 
 # Build the test program.
 test_cutest : test_cutest.c cutest.h
-	cc $(ALL_CFLAGS) -o $(blddir)/test_cutest $(srcdir)/test_cutest.c
+	cc $(ALL_CFLAGS) -o $(blddir)/test_cutest test_cutest.c
 
 # Install/uninstall at the standard loation.
 install : cutest.h
